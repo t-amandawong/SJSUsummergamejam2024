@@ -14,7 +14,7 @@ public class playerController : MonoBehaviour
     //jump stuff
     private bool isGrounded;
     public float jumpForce;
-
+//test
     void Start()
     {
         
