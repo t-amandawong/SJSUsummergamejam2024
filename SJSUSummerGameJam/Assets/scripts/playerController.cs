@@ -9,33 +9,32 @@ public class playerController : MonoBehaviour
     public GameObject player; // playerObject
     public Rigidbody rb;    // Player model
     public CapsuleCollider cc;
-    public float moveSpeed;    // Move speed
     private Vector3 moveInput;   // Player movement in the world
+    private bool facingForward = true;
+
     //jump stuff
     private bool isGrounded;
-    public float jumpForce;
-//test
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-     // Player movement in the x(left and right) direction. Covers A, D, Left key, Right key
-     moveInput.x = Input.GetAxisRaw("Horizontal");
-        
-     moveInput.Normalize();
+        // forward movement
+        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
+            transform.Translate(Vector3.back * Time.deltaTime * GameManager.Instance.moveSpeed);
+            GameManager.Instance.direction = 1;
+        } 
+        // backward movement -- fix later
+        else if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
+            transform.Translate(Vector3.forward * Time.deltaTime * GameManager.Instance.moveSpeed);
+            GameManager.Instance.direction = -1;
+        }
 
-     // Updates the player model
-     rb.velocity = new Vector3(moveInput.x * moveSpeed, rb.velocity.y, moveInput.z * moveSpeed);
-
-    //player Jump
-    if (Input.GetButtonDown("Jump")){
-        //Debug.Log("jump");
-        rb.velocity = new Vector3(rb.velocity.x, jumpForce);
-     }
+        //player Jump
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)){
+            //Debug.Log("jump");
+            rb.velocity = new Vector3(rb.velocity.x, GameManager.Instance.jumpForce);
+            GameManager.Instance.playerJumped = true;
+        }
         
     }
 }
