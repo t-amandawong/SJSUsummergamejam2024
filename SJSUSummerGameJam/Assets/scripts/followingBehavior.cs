@@ -4,17 +4,29 @@ using UnityEngine;
 
 public class followingBehavior : MonoBehaviour
 {
-    public GameObject target; // target object
-    public Rigidbody rb;    // Player model
+    public Transform leader;
+    public float followDistance = 1.0f;
+    public float moveSpeed = 4.5f;
+    private Vector3 moveInput; 
 
-    //jump stuff
-    private bool isGrounded;
+    private Rigidbody rb;
 
-    public void Jump () {
-        rb.velocity = new Vector3(rb.velocity.x, GameManager.Instance.jumpForce);
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
     }
 
-    public void Follow(int direction) {
-        transform.Translate(direction * Vector3.back * Time.deltaTime * GameManager.Instance.moveSpeed);
+    void Update()
+    {
+        // Player movement in the x(left and right) direction. Covers A, D, Left key, Right key
+        moveInput.x = Input.GetAxis("Horizontal");
+        moveInput.Normalize();
+
+        // Updates the player model
+        rb.velocity = new Vector3(moveInput.x * GameManager.Instance.moveSpeed, rb.velocity.y, moveInput.z * GameManager.Instance.moveSpeed);
+    }
+
+    public void Jump() {
+        rb.velocity = new Vector3(rb.velocity.x, GameManager.Instance.jumpForce);
     }
 }

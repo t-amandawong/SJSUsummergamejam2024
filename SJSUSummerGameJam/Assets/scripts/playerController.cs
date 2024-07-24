@@ -18,16 +18,12 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // forward movement
-        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-            transform.Translate(Vector3.back * Time.deltaTime * GameManager.Instance.moveSpeed);
-            GameManager.Instance.direction = 1;
-        } 
-        // backward movement -- fix later
-        else if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-            transform.Translate(Vector3.forward * Time.deltaTime * GameManager.Instance.moveSpeed);
-            GameManager.Instance.direction = -1;
-        }
+        // Player movement in the x(left and right) direction. Covers A, D, Left key, Right key
+        moveInput.x = Input.GetAxis("Horizontal");
+        moveInput.Normalize();
+
+        // Updates the player model
+        rb.velocity = new Vector3(moveInput.x * GameManager.Instance.moveSpeed, rb.velocity.y, moveInput.z * GameManager.Instance.moveSpeed);
 
         //player Jump
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)){
