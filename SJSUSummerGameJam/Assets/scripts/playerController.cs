@@ -12,6 +12,7 @@ public class playerController : MonoBehaviour
     private Vector3 moveInput;   // Player movement in the world
     public Animator playerAnimator; //player animator
     bool facingRight = false;
+    public float moveSpeed;
     //jump stuff
     private bool isGrounded;
     public float jumpForce;
