@@ -9,7 +9,6 @@ public class playerController : MonoBehaviour
     public GameObject player; // playerObject
     public Rigidbody rb;    // Player model
     public CapsuleCollider cc;
-    public float moveSpeed;    // Move speed
     private Vector3 moveInput;   // Player movement in the world
     public Animator playerAnimator; //player animator
     bool facingRight = false;
