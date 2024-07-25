@@ -10,31 +10,60 @@ public class playerController : MonoBehaviour
     public Rigidbody rb;    // Player model
     public CapsuleCollider cc;
     private Vector3 moveInput;   // Player movement in the world
-    private bool facingForward = true;
-
+    public Animator playerAnimator; //player animator
+    bool facingRight = false;
     //jump stuff
     private bool isGrounded;
+    public float jumpForce;
+    public float rayLength = 3.0f;  //for raycast
+    public LayerMask groundLayer;
+
+//test
+    void Start()
+    {
+        
+    }
 
     // Update is called once per frame
     void Update()
     {
-        // forward movement
-        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-            transform.Translate(Vector3.back * Time.deltaTime * GameManager.Instance.moveSpeed);
-            GameManager.Instance.direction = 1;
-        } 
-        // backward movement -- fix later
-        else if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-            transform.Translate(Vector3.forward * Time.deltaTime * GameManager.Instance.moveSpeed);
-            GameManager.Instance.direction = -1;
+     // Player movement in the x(left and right) direction. Covers A, D, Left key, Right key
+    moveInput.x = Input.GetAxisRaw("Horizontal");
+    moveInput.Normalize();
+    playerAnimator.SetFloat("horizontalSpeed", Mathf.Abs(moveInput.x));   //set float speed to change animation state to run
+
+     // Updates the player model
+    rb.velocity = new Vector3(moveInput.x * moveSpeed, rb.velocity.y, moveInput.z * moveSpeed);
+    playerAnimator.SetFloat("vertVelocity", rb.velocity.y);
+
+    //player Jump
+    if (Input.GetButtonDown("Jump")){   //press space to jump
+        //Debug.Log("jump");
+        rb.velocity = new Vector3(rb.velocity.x, jumpForce);
+     }
+
+     // Flip character
+    if (moveInput.x > 0 && facingRight){
+            Flip();
+        }
+    if (moveInput.x < 0 && !facingRight){
+            Flip();
         }
 
-        //player Jump
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)){
-            //Debug.Log("jump");
-            rb.velocity = new Vector3(rb.velocity.x, GameManager.Instance.jumpForce);
-            GameManager.Instance.playerJumped = true;
-        }
+    isGrounded = Physics.Raycast(transform.position, Vector3.down, rayLength, groundLayer); //check if grounded using raycast
+    playerAnimator.SetBool("isGrounded", isGrounded);
+    //Debug.DrawRay(transform.position, Vector3.down * rayLength, Color.red);
+    //Debug.Log("Is Grounded: " + isGrounded);
         
+    }
+
+    // Controls flipping of character
+    void Flip()
+    {
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
+
+        facingRight = !facingRight;
     }
 }
