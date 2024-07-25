@@ -10,7 +10,7 @@ public class proximityActivate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _TextUI.SetActive(false);        //turn off at start dialogue
     }
 
     // Update is called once per frame
