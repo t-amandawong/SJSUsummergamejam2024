@@ -1258,7 +1258,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 679785537325104296, guid: 8952603c4da6f474dae1fc35e34fa157, type: 3}
       propertyPath: m_Name
-      value: testPlayer
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 679785537325104296, guid: 8952603c4da6f474dae1fc35e34fa157, type: 3}
       propertyPath: m_TagString
@@ -3227,6 +3227,10 @@ GameObject:
   - component: {fileID: 2095790961}
   - component: {fileID: 2095790963}
   - component: {fileID: 2095790964}
+  - component: {fileID: 2095790968}
+  - component: {fileID: 2095790967}
+  - component: {fileID: 2095790966}
+  - component: {fileID: 2095790965}
   m_Layer: 0
   m_Name: Zombie_Test
   m_TagString: Untagged
@@ -3275,12 +3279,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -562236856, guid: f29c5ec079f68ec42b0e9a0bd855e774, type: 3}
+  m_Sprite: {fileID: -752686021, guid: 7fa85209a48f49f4ca218a188a54108b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6.4, y: 6.403125}
+  m_Size: {x: 6.4, y: 6.4125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3334,6 +3338,94 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4232e8d0c00b2e4dad474ea6d090f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &2095790965
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095790960}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 56.107952, y: 8.845103, z: 1.8828747}
+  m_Center: {x: 23.453821, y: 1.9257269, z: 0}
+--- !u!54 &2095790966
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095790960}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 10
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 124
+  m_CollisionDetection: 0
+--- !u!65 &2095790967
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095790960}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.8189297, y: 4.4020658, z: 1.6804308}
+  m_Center: {x: 0.18391609, y: -0.29579186, z: 0}
+--- !u!114 &2095790968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095790960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6a538582b4c8346baf830b2f3269ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 2095790960}
+  player: {fileID: 515452592}
+  playerLocation: {fileID: 0}
+  enemyspeed: 25
+  detectionRadius: 5
+  enemyAnimator: {fileID: 2095790963}
+  patrolDistance: 5
 --- !u!1001 &2119063743
 PrefabInstance:
   m_ObjectHideFlags: 0
