@@ -64,6 +64,7 @@ public class zombie : MonoBehaviour
             isPlayerDetected = true;
             enemyAnimator.SetBool("isMoving", true);
             isMoving = true;
+            gameManager.HandleCollision(collision.gameObject);
         }
     }
 
