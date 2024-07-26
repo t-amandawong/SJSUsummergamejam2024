@@ -41,6 +41,7 @@ public class playerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)){   //press space to jump
             //Debug.Log("jump");
             rb.velocity = new Vector3(rb.velocity.x, jumpForce);
+            GameManager.Instance.playerJumped = true;
         }
 
         // Flip character
