@@ -264,7 +264,7 @@ MonoBehaviour:
   playerJumped: 0
   isMoving: 0
   direction: 0
-  followingDistance: 1
+  followingDistance: {x: 1, y: 1, z: 1}
   delay: 0.2
   moveSpeed: 5
   jumpForce: 5
@@ -295,6 +295,7 @@ GameObject:
   - component: {fileID: 868785641}
   - component: {fileID: 868785640}
   - component: {fileID: 868785639}
+  - component: {fileID: 868785643}
   m_Layer: 0
   m_Name: testfloor
   m_TagString: ground
@@ -388,6 +389,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &868785643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868785638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 60867466e992048adbf74ee417f11437, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &959732627
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,8 +558,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49cacfd1940c4e1fa0a98fb83a9e616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1844817008}
-  rb: {fileID: 1094236350}
+  leader: {fileID: 2073948414}
+  followDistance: 1
+  moveSpeed: 4.5
 --- !u!54 &1094236350
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -967,6 +1000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1844817008}
   rb: {fileID: 1844817014}
+  cc: {fileID: 0}
 --- !u!54 &1844817014
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1132,8 +1166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49cacfd1940c4e1fa0a98fb83a9e616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1844817008}
-  rb: {fileID: 2073948410}
+  leader: {fileID: 1844817012}
+  followDistance: 1
+  moveSpeed: 4.5
 --- !u!54 &2073948410
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1177,7 +1212,7 @@ CapsuleCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
