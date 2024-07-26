@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
             Instantiate(replacement, spawnPosition, Quaternion.identity);
 
             // Move to the next replacement object in the array
-            currentReplacementIndex = (currentReplacementIndex + 1) % replacementObjects.Length;
+            currentReplacementIndex = (currentReplacementIndex + 1) % players.Length;
         }
     }
 
