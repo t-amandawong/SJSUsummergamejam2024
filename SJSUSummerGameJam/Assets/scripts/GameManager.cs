@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public bool playerJumped = false;
     public bool isMoving = false;
     public int direction = 0;
+    public Vector3 followingDistance = new Vector3(1,1,1);
 
     public float delay = 0.2f;      // delay between each character
     public float moveSpeed;
@@ -32,13 +33,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator FollowingBehavior(float delay, int direction) {
-        for(var i = 1; i < players.Length; i++) {
-            yield return new WaitForSeconds(delay);
-            players[i].GetComponent<followingBehavior>().Follow(direction);
-        }
-    }
-
     private void Awake() {
         _instance = this;
     }
@@ -48,10 +42,5 @@ public class GameManager : MonoBehaviour
             playerJumped = false;
             StartCoroutine(JumpBehavior(delay));
         }
-
-        if (direction != 0) {
-            StartCoroutine(FollowingBehavior(delay, direction));
-            direction = 0;
-        } 
     }
 }
