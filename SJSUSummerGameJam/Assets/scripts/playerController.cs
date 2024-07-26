@@ -38,7 +38,7 @@ public class playerController : MonoBehaviour
     playerAnimator.SetFloat("vertVelocity", rb.velocity.y);
 
     //player Jump
-    if (Input.GetButtonDown("Jump")){   //press space to jump
+    if (Input.GeyKeyDown(KeyCode.Space) || Input.GeyKeyDown(KeyCode.W) || Input.GeyKeyDown(KeyCode.UpArrow)){   //press space to jump
         //Debug.Log("jump");
         rb.velocity = new Vector3(rb.velocity.x, jumpForce);
      }
