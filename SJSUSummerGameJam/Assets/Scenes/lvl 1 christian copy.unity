@@ -1758,6 +1758,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 555822476}
   moveSpeed: 15
   jumpForce: 15
+  maxJumps: 2
   rayLength: 3
   groundLayer:
     serializedVersion: 2
@@ -2986,6 +2987,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 1081970487}
   moveSpeed: 15
   jumpForce: 15
+  maxJumps: 2
   rayLength: 3
   groundLayer:
     serializedVersion: 2

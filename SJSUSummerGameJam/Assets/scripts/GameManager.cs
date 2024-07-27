@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
             // change tag to player and deactivate follower script
             players[currentReplacementIndex + 1].tag = "Player";
             players[currentReplacementIndex + 1].GetComponent<followingBehavior>().enabled = false;
+            players[currentReplacementIndex + 1].layer = 8;
 
             // change indicator to current player
             players[currentReplacementIndex + 1].gameObject.transform.GetChild(1).gameObject.SetActive(true);

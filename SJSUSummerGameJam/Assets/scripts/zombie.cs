@@ -61,6 +61,7 @@ public class zombie : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            player = other.gameObject; // Set other player as playerobject object
             isPlayerDetected = true;
             enemyAnimator.SetBool("isMoving", true);
             isMoving = true;
