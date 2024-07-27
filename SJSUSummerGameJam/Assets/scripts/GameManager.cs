@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
+    public GameObject camera;
     public GameObject[] players;
 
     public bool playerJumped = false;
@@ -40,8 +41,11 @@ public class GameManager : MonoBehaviour
             Vector3 spawnPosition = players[currentReplacementIndex].transform.position;
 
             // Destroy the collided object and replace it
-            Destroy(collidedObject);
+            collidedObject.gameObject.SetActive(false);
             Instantiate(replacement, spawnPosition, Quaternion.identity);
+            if (camera.GetComponent<CameraController>().player == players[currentReplacementIndex]) {
+                camera.GetComponent<CameraController>().player = players[currentReplacementIndex + 1];
+            }
 
             // Move to the next replacement object in the array
             currentReplacementIndex = (currentReplacementIndex + 1) % players.Length;
