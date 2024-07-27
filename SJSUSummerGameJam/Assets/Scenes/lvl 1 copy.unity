@@ -1023,7 +1023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 679785537325104296, guid: 8952603c4da6f474dae1fc35e34fa157, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Follower
       objectReference: {fileID: 0}
     - target: {fileID: 2989785477562313565, guid: 8952603c4da6f474dae1fc35e34fa157, type: 3}
       propertyPath: jumpForce
@@ -1758,6 +1758,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 555822476}
   moveSpeed: 15
   jumpForce: 15
+  maxJumps: 2
   rayLength: 3
   groundLayer:
     serializedVersion: 2
@@ -2986,6 +2987,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 1081970487}
   moveSpeed: 15
   jumpForce: 15
+  maxJumps: 2
   rayLength: 3
   groundLayer:
     serializedVersion: 2
@@ -4846,7 +4848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 679785537325104296, guid: 8952603c4da6f474dae1fc35e34fa157, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Follower
       objectReference: {fileID: 0}
     - target: {fileID: 2989785477562313565, guid: 8952603c4da6f474dae1fc35e34fa157, type: 3}
       propertyPath: jumpForce
