@@ -41,7 +41,7 @@ public class playerController : MonoBehaviour
         playerAnimator.SetFloat("vertVelocity", rb.velocity.y);
 
         //player Jump
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)){   //press space to jump
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && gameObject.tag == "Player"){   //press space to jump
             //Debug.Log("jump");
             jumpCount++;
             if (jumpCount < maxJumps){
