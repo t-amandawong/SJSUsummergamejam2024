@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
+    public GameObject camera;
     public GameObject[] players;
 
     public bool playerJumped = false;
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     public float delay = 0.2f;      // delay between each character
     public float moveSpeed;
     public float jumpForce;
+    private int currentReplacementIndex = 0;
 
     public static GameManager Instance {
         get {
@@ -30,6 +32,23 @@ public class GameManager : MonoBehaviour
         for(var i = 1; i < players.Length; i++) {
             yield return new WaitForSeconds(delay);
             players[i].GetComponent<followingBehavior>().Jump();
+        }
+    }
+
+    public void HandleCollision(GameObject collidedObject) {
+        if (players.Length > 0) {
+            GameObject replacement = players[currentReplacementIndex + 1];
+            Vector3 spawnPosition = players[currentReplacementIndex].transform.position;
+
+            // Destroy the collided object and replace it
+            collidedObject.gameObject.SetActive(false);
+            Instantiate(replacement, spawnPosition, Quaternion.identity);
+            if (camera.GetComponent<CameraController>().player == players[currentReplacementIndex]) {
+                camera.GetComponent<CameraController>().player = players[currentReplacementIndex + 1];
+            }
+
+            // Move to the next replacement object in the array
+            currentReplacementIndex = (currentReplacementIndex + 1) % players.Length;
         }
     }
 

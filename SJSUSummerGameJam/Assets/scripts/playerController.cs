@@ -28,33 +28,34 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     // Player movement in the x(left and right) direction. Covers A, D, Left key, Right key
-    moveInput.x = Input.GetAxisRaw("Horizontal");
-    moveInput.Normalize();
-    playerAnimator.SetFloat("horizontalSpeed", Mathf.Abs(moveInput.x));   //set float speed to change animation state to run
+        // Player movement in the x(left and right) direction. Covers A, D, Left key, Right key
+        moveInput.x = Input.GetAxisRaw("Horizontal");
+        moveInput.Normalize();
+        playerAnimator.SetFloat("horizontalSpeed", Mathf.Abs(moveInput.x));   //set float speed to change animation state to run
 
-     // Updates the player model
-    rb.velocity = new Vector3(moveInput.x * moveSpeed, rb.velocity.y, moveInput.z * moveSpeed);
-    playerAnimator.SetFloat("vertVelocity", rb.velocity.y);
+        // Updates the player model
+        rb.velocity = new Vector3(moveInput.x * moveSpeed, rb.velocity.y, moveInput.z * moveSpeed);
+        playerAnimator.SetFloat("vertVelocity", rb.velocity.y);
 
-    //player Jump
-    if (Input.GetButtonDown("Jump")){   //press space to jump
-        //Debug.Log("jump");
-        rb.velocity = new Vector3(rb.velocity.x, jumpForce);
-     }
-
-     // Flip character
-    if (moveInput.x > 0 && facingRight){
-            Flip();
-        }
-    if (moveInput.x < 0 && !facingRight){
-            Flip();
+        //player Jump
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)){   //press space to jump
+            //Debug.Log("jump");
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce);
+            GameManager.Instance.playerJumped = true;
         }
 
-    isGrounded = Physics.Raycast(transform.position, Vector3.down, rayLength, groundLayer); //check if grounded using raycast
-    playerAnimator.SetBool("isGrounded", isGrounded);
-    //Debug.DrawRay(transform.position, Vector3.down * rayLength, Color.red);
-    //Debug.Log("Is Grounded: " + isGrounded);
+        // Flip character
+        if (moveInput.x > 0 && facingRight){
+                Flip();
+            }
+        if (moveInput.x < 0 && !facingRight){
+                Flip();
+            }
+
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, rayLength, groundLayer); //check if grounded using raycast
+        playerAnimator.SetBool("isGrounded", isGrounded);
+        //Debug.DrawRay(transform.position, Vector3.down * rayLength, Color.red);
+        //Debug.Log("Is Grounded: " + isGrounded);
         
     }
 
