@@ -47,6 +47,15 @@ public class GameManager : MonoBehaviour
                 camera.GetComponent<CameraController>().player = players[currentReplacementIndex + 1];
             }
 
+            // change tag to player and deactivate follower script
+            players[currentReplacementIndex + 1].tag = "Player";
+            players[currentReplacementIndex + 1].GetComponent<followingBehavior>().enabled = false;
+            // change player layer to player
+            players[currentReplacementIndex + 1].layer = 8;
+
+            // change indicator to current player
+            players[currentReplacementIndex + 1].gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            
             // Move to the next replacement object in the array
             currentReplacementIndex = (currentReplacementIndex + 1) % players.Length;
         }
