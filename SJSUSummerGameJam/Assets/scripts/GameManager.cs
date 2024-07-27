@@ -38,14 +38,17 @@ public class GameManager : MonoBehaviour
     public void HandleCollision(GameObject collidedObject) {
         if (players.Length > 0) {
             GameObject replacement = players[currentReplacementIndex + 1];
-            Vector3 spawnPosition = players[currentReplacementIndex].transform.position;
 
             // Destroy the collided object and replace it
             collidedObject.gameObject.SetActive(false);
-            Instantiate(replacement, spawnPosition, Quaternion.identity);
             if (camera.GetComponent<CameraController>().player == players[currentReplacementIndex]) {
                 camera.GetComponent<CameraController>().player = players[currentReplacementIndex + 1];
             }
+
+            // change tag to player and deactivate follower script
+            players[currentReplacementIndex + 1].tag = "Player";
+            players[currentReplacementIndex + 1].GetComponent<followingBehavior>().enabled = false;
+            
 
             // Move to the next replacement object in the array
             currentReplacementIndex = (currentReplacementIndex + 1) % players.Length;
